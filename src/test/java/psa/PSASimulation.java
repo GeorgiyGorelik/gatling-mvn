@@ -6,6 +6,8 @@ import io.gatling.javaapi.core.ScenarioBuilder;
 import io.gatling.javaapi.core.Simulation;
 import io.gatling.javaapi.http.HttpProtocolBuilder;
 import psa.core.config.DefaultConfig;
+import psa.core.load.impl.ClosedLoadModel;
+import psa.core.load.impl.OpenLoadModel;
 import psa.core.load.impl.SingleIterationLoadModel;
 import psa.core.protocol.impl.DefaultHttpProtocol;
 
@@ -20,9 +22,10 @@ public class PSASimulation extends Simulation {
     ProtocolBuilder httpProtocol = new DefaultHttpProtocol().getProtocol(config.baseUrl);
 
     ScenarioBuilder testScenario = scenario("PSA API Tests")
-            .exec(HomePage);
+            .exec(HomePage)
+            .exec(Search);
 
-    PopulationBuilder loadModel = new SingleIterationLoadModel(testScenario, config).buildLoadModel();
+    PopulationBuilder loadModel = new OpenLoadModel(testScenario, config).buildLoadModel();
 
     {
         setUp(loadModel).protocols(httpProtocol);

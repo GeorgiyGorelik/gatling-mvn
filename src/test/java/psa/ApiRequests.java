@@ -16,4 +16,9 @@ public class ApiRequests {
             .get("/")
             .check(substring("<!doctype html>"))
             .check(status().is(200));
+
+    public static HttpRequestActionBuilder Search = http("GET_search")
+            .get("/catalogsearch/result/?q=9mm+hollow")
+            .check(substring("9mm hollow"))
+            .check(status().is(200));
 }
