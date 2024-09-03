@@ -10,7 +10,7 @@ public class DefaultConfig {
     public long testDuration;
 
     public DefaultConfig() {
-        this.baseUrl = System.getProperty("baseUrl", "https://stagev2.palmettostatearmory.com");
+        this.baseUrl = System.getProperty("baseUrl", "http://stagev2.palmettostatearmory.com");
         this.vUsers = Integer.getInteger("vUsers", 1);
         this.minPause = Integer.getInteger("minPause", 3);
         this.maxPause = Integer.getInteger("maxPause", 5);
